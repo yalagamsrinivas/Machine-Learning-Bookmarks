@@ -5,4 +5,4 @@ Please click on below link for more details
 https://github.com/yalagamsrinivas/Machine-Learning-Bookmarks/wiki
 
 
-![ ](Machine-Learning-Bookmarks/blob/master/0.png)
+![ ](https://raw.githubusercontent.com/yalagamsrinivas/Machine-Learning-Bookmarks/master/0.png)
