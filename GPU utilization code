@@ -1,0 +1,27 @@
+Use this code to manage GPU usage 
+-	os.environ["CUDA_VISIBLE_DEVICES"]="0" or “1” to set GPU
+-	config.gpu_options.per_process_gpu_memory_fraction = 1. (0.1,0.2,…1.0) to set GPU usage. This will be help full in usage of GPU memory
+-	This code will make your program to wait until GPU gets free. Once GPU is free than automatically your program starts execution.
+
+#=================================================
+import os
+import tensorflow as tf
+from GPUtil import getGPUs
+os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
+# The GPU id to use, usually either "0" or "1"
+os.environ["CUDA_VISIBLE_DEVICES"]="0"
+gpunum = int(os.environ["CUDA_VISIBLE_DEVICES"])
+# Wait until GPU is free
+while True:
+    gpudata = getGPUs()
+    if (gpudata[gpunum].memoryUtil <= 0.2):
+        break
+#=================================================
+#SET Utilization GPU
+#=================================================
+from keras import backend as K
+config = tf.ConfigProto()
+config.gpu_options.per_process_gpu_memory_fraction = 1.  # set % of usage of GPU
+session = tf.Session(config=config)
+K.set_session(session)
+#=================================================
